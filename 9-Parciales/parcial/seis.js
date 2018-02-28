@@ -4,29 +4,31 @@ function Mostrar()
     var mayorImportDeVenta;
     var menorImportDeVenta;
 
-    for (var index = 0; index < 5; ) {        
-        ventaActual = prompt('Ingrese una venta');
-        if (! isNaN(ventaActual) && ventaActual > 0) {
-            if (index == 0) {
-                ventaActual = parseInt(ventaActual);        
+    for (var contador = 0; contador < 24; ) {        
+        ventaActual = prompt('Ingrese el importe de una venta');
+        while ( isNaN(ventaActual) || ventaActual <= 0) {           
+            ventaActual = prompt(' error , Ingrese el importe de una venta');
+        }
+
+        if (contador == 0) {
+            ventaActual = parseInt(ventaActual);        
+            mayorImportDeVenta = ventaActual;
+            menorImportDeVenta = ventaActual;
+            contador++;    
+        }
+        else {
+            if(ventaActual > mayorImportDeVenta){
                 mayorImportDeVenta = ventaActual;
-                menorImportDeVenta = ventaActual;
-                index++;    
+                contador++;    
             }
-            else {
-                if(ventaActual > mayorImportDeVenta){
-                    mayorImportDeVenta = ventaActual;
-                    index++;    
-                }
-                else{
-                    if (ventaActual < menorImportDeVenta) {
-                        menorImportDeVenta = ventaActual;
-                        index++;    
-                    }
+            else{
+                if (ventaActual < menorImportDeVenta) {
+                    menorImportDeVenta = ventaActual;
+                    contador++;    
                 }
             }
         }
-    }
+    }    
 
     document.write('El menor importe de venta fue: '+ menorImportDeVenta + '<br/>' + 'El mayor importe de venta fue: ' + mayorImportDeVenta)
 }
